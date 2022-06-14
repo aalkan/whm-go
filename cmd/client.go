@@ -1,4 +1,4 @@
-package client
+package cmd
 
 import (
 	"encoding/json"
@@ -9,7 +9,6 @@ import (
 	"time"
 )
 
-
 type client struct {
 	config     *whm.Config
 	httpClient *http.Client
@@ -17,7 +16,7 @@ type client struct {
 
 func NewClient(config *whm.Config) *client {
 	return &client{
-		config:  config,
+		config: config,
 		httpClient: &http.Client{
 			Timeout: 10 * time.Second,
 		},
@@ -25,14 +24,12 @@ func NewClient(config *whm.Config) *client {
 }
 
 func (c *client) request(method, endpoint string, params, response interface{}) error {
-	url := fmt.Sprintf("%s:%s?responsetype=%s", c.config.Host, c.config.Port, "json")
+	url := fmt.Sprintf("%s:%s/json-api%s%s", c.config.Host, c.config.Port, endpoint, "?api.version=1")
 	request, err := http.NewRequest(method, url, nil)
 	if err != nil {
 		return err
 	}
-
-	request.Header.Set("Accept", "application/json")
-	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("Authorization", "whm "+c.config.User+":"+c.config.ApiToken)
 	if params != nil {
 		query := request.URL.Query()
 		reflectVal := reflect.ValueOf(params).Elem()
