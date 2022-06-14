@@ -15,7 +15,7 @@ func (c *client) CreateAccount(params *CreateAccountParams, response *CreateAcco
 }
 
 func (c *client) DeleteAccount(params *DeleteAccountParams, response *DeleteAccountResponse) error {
-	if err := c.request("POST", "/deleteacct", params, response); err != nil {
+	if err := c.request("POST", "/removeacct", params, response); err != nil {
 		return err
 	}
 	return nil
