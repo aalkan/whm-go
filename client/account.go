@@ -1,4 +1,4 @@
-package cmd
+package client
 
 func (c *client) UserList(params *UserListParams, resonse *UserListResponse) error {
 	if err := c.request("GET", "/listaccts", params, resonse); err != nil {

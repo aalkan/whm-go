@@ -1,7 +1,6 @@
-package cmd
+package client
 
 import (
-	"fmt"
 	"github.com/aalkan/whm-go"
 	"testing"
 )
@@ -19,7 +18,6 @@ func TestUserList(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	fmt.Println("Succeed", response)
 }
 
 func TestDeleteAccount(t *testing.T) {
@@ -37,5 +35,4 @@ func TestDeleteAccount(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	fmt.Println("Succeed", response)
 }

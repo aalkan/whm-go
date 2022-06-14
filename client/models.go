@@ -1,4 +1,4 @@
-package cmd
+package client
 
 type UserListParams struct {
 	Search       string `json:"search"`
