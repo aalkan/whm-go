@@ -12,7 +12,11 @@ func TestUserList(t *testing.T) {
 		ApiToken: "#",
 		User:     "#",
 	})
-	params := &UserListParams{}
+	params := &UserListParams{
+		Search:       "username",
+		SearchMethod: "regex",
+		SearchType:   "user",
+	}
 	response := &UserListResponse{}
 	err := c.UserList(params, response)
 	if err != nil {
