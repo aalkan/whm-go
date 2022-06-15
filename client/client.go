@@ -18,7 +18,7 @@ func NewClient(config *whm.Config) *client {
 	return &client{
 		config: config,
 		httpClient: &http.Client{
-			Timeout: 10 * time.Second,
+			Timeout: 20 * time.Second,
 		},
 	}
 }
